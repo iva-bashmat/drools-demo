@@ -1,0 +1,18 @@
+global com.example.drools.model.RouteResult routeResult;
+import com.example.drools.model.Route
+
+dialect  "mvel"
+
+rule "Fast Delivery"
+    when
+        routeInstance:Route(distance < 10);
+    then
+      	routeResult.setState("accepted");
+end
+
+rule "Too Long Route"
+    when
+        routeInstance:Route(distance > 1000);
+    then
+      	routeResult.setState("rejected");
+end
